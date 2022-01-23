@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
-const pages = ['Home', 'Projects', 'Resume', 'TEST'];
+const pages = ['Home', 'Projects', 'Resume', 'TESTING'];
 
 const ResponsiveAppBar = () => {
   return (
