@@ -11,6 +11,25 @@ Recently, while I was working on my CityDB personal project, I ran into a few ca
 
 The port of the code that I wrote up while going through his stream can be found in my [rust-playground repo][StrSplit]. The rest of this post will go over the issues that were discussed and how variance played a big role at guranteeing safety.
 
+## What is a lifetime?
+
+### Defining Lifetimes
+
+### Generic Lifetimes
+
+{% highlight rs %}
+struct StrSplit<'a> {
+remainder: &'a str,
+delimeter: &'a str
+}
+
+impl<'a> StrSplit<'a> {
+...
+}
+{% endhighlight %}
+
+### <'\_> Lifetime
+
 ## Variance
 
 I'll be making a future post on variance going over yet another port of a C library but briefly variance consists of the following types:
@@ -24,13 +43,16 @@ The [Rustonomican](https://doc.rust-lang.org/nomicon/subtyping.html) does a fant
 A brief summary of this can be found here:
 ![Variance table screenshot](/assets/variance-table.png)
 
-## Defining Lifetimes
-
 ## Multiple Lifetimes!
 
 {% highlight rs %}
-fn main() {
-println!("hello world!");
+struct StrSplit<'a, 'b> {
+remainder: &'a str,
+delimeter: &'b str
+}
+
+impl<'a, 'b> StrSplit<'a, 'b> {
+...
 }
 {% endhighlight %}
 
