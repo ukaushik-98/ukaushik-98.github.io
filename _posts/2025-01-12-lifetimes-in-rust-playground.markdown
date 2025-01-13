@@ -2,7 +2,7 @@
 layout: post
 title: "Exploring Lifetimes in Rust with StrSplit"
 date: 2025-01-12 22:33:44 -0800
-categories: RUST, Lifetimes, Variance
+categories: rust
 ---
 
 Recently, while I was working on my CityDB personal project, I ran into a few cases where I'd like to improve performance by not cloning anywhere. As such, I started diving deeper into the realm of lifetimes and variance and decided to chart out my learnings here.
