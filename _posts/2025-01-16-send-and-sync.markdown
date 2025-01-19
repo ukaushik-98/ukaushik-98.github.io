@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Send and Sync"
-date: 2025-01-12 22:33:44 -0800
+date: 2025-01-16 09:00:00 -0800
 categories: rust
 ---
 
-# Send
+### Send
 
-## Interior Mutability Types
+#### Interior Mutability Types
 
-# Sync
+### Sync
 
-## Mutex Gaurd
+#### Mutex Gaurd

@@ -7,7 +7,7 @@ categories: rust
 
 Recently, while I was working on my CityDB personal project, I ran into a few cases where I'd like to improve performance by not cloning anywhere. As such, I started diving deeper into the realm of lifetimes and variance and decided to chart out my learnings here.
 
-[Jon Gjengset][jon-github] did a fantastic [stream](https://www.youtube.com/watch?v=rAl-9HwD858) about lifetimes and did a deep dive on StrSplit, a C Library that takes a string and a delimeter and splits the passed in string at the first occurrence. StrSplit also mutates the input in the process, which also turns out to be especially important.
+[Jon Gjengset][jon-github] did an indepth [stream](https://www.youtube.com/watch?v=rAl-9HwD858) about lifetimes and did a deep dive on StrSplit, a C Library that takes a string and a delimeter and splits the passed in string at the first occurrence. StrSplit also mutates the input in the process, which also turns out to be especially important.
 
 The port of the code that I wrote up while going through his stream can be found in my [rust-playground repo][StrSplit]. The rest of this post will go over the issues that were discussed and how variance played a big role at guranteeing safety.
 
@@ -17,16 +17,16 @@ The port of the code that I wrote up while going through his stream can be found
 
 ### Generic Lifetimes
 
-{% highlight rs %}
+```rust
 struct StrSplit<'a> {
-remainder: &'a str,
-delimeter: &'a str
+    remainder: &'a str,
+    delimeter: &'a str
 }
 
 impl<'a> StrSplit<'a> {
-...
+    ...
 }
-{% endhighlight %}
+```
 
 ### <'\_> Lifetime
 
@@ -45,16 +45,16 @@ A brief summary of this can be found here:
 
 ## Multiple Lifetimes!
 
-{% highlight rs %}
+```rust
 struct StrSplit<'a, 'b> {
-remainder: &'a str,
-delimeter: &'b str
+    remainder: &'a str,
+    delimeter: &'b str
 }
 
 impl<'a, 'b> StrSplit<'a, 'b> {
-...
+    ...
 }
-{% endhighlight %}
+```
 
 [jon-github]: https://github.com/jonhoo
 [StrSplit]: https://github.com/ukaushik-98/rust-playground/blob/master/src/strSplit/mod.rs
